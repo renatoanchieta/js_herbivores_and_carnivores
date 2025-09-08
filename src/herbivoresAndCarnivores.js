@@ -10,9 +10,7 @@ class Animal {
   }
 
   _checkHealth() {
-    if (this.health <= 0) {
-      Animal.alive = Animal.alive.filter(animal => animal !== this);
-    }
+    Animal.alive = Animal.alive.filter(animal => animal.health > 0);
   }
 }
 
@@ -28,8 +26,6 @@ class Herbivore extends Animal {
 }
 
 class Carnivore extends Animal {
-  // ✅ construtor removido — era inútil
-
   bite(target) {
     if (target instanceof Herbivore && !target.hidden) {
       target.health -= 50;
@@ -37,6 +33,7 @@ class Carnivore extends Animal {
     }
   }
 }
+
 
 //Comentando para tentar ler na plataforma novamente
 
