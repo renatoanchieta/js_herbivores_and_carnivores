@@ -3,8 +3,19 @@
 export class Animal {
     constructor(name, health = 100) {
         this.name = name;
-        this.health = health;
-        Animal.alive.push(this);
+        this._health = health;
+        if (this._health > 0) {
+            Animal.alive.push(this);
+        }
+    }
+
+    static alive = [];
+
+    set health(value) {
+        this._health = value;
+        if (this._health <= 0) {
+            this.die();
+        }
     }
 
     static alive = [];
@@ -21,10 +32,7 @@ export class Animal {
     }
 
     die() {
-        const index = Animal.alive.indexOf(this);
-        if (index > -1) {
-            Animal.alive.splice(index, 1);
-        }
+        Animal.alive = Animal.alive.filter(animal => animal.health > 0);
     }
 }
 
