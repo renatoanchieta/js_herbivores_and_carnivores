@@ -1,7 +1,7 @@
 'use strict';
 
-class Animal {
-  constructor(name, health = 100) {
+export class Animal {
+    constructor(name, health = 100) {
         this.name = name;
         this.health = health;
         Animal.alive.push(this);
@@ -28,8 +28,8 @@ class Animal {
     }
 }
 
-class Herbivore extends Animal {
-      constructor(name, health) {
+export class Herbivore extends Animal {
+    constructor(name, health) {
         super(name, health);
         this.hidden = false;
     }
@@ -39,11 +39,7 @@ class Herbivore extends Animal {
     }
 }
 
-class Carnivore extends Animal {
-      constructor(name, health) {
-        super(name, health);
-    }
-
+export class Carnivore extends Animal {
     bite(herbivore) {
         if (herbivore instanceof Herbivore && !herbivore.hidden) {
             herbivore.health -= 50;
